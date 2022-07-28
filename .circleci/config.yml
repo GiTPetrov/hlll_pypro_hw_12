@@ -8,7 +8,7 @@ jobs:
   flake_test:
     executor: python/default
     environment:
-      HW5_SK: django-insecure
+      HW12_SK: django-insecure
     steps:
       - checkout
       - python/install-packages:
