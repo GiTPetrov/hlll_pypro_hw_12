@@ -1,1 +1,2 @@
-# hlll_pypro_hw_12
+# Hillel: Python PRO: HW_12
+Annotate, aggregate

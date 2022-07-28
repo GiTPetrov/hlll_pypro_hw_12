@@ -1,0 +1,24 @@
+version: 2.1
+
+orbs:
+
+  python: circleci/python@2.0.3
+
+jobs:
+  flake_test:
+    executor: python/default
+    environment:
+      HW5_SK: django-insecure
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          pip-dependency-file: requirements.txt
+      - run: python manage.py migrate
+      - run: flake8 .
+#      - run: python manage.py test
+
+workflows:
+  run tests:
+    jobs:
+      - flake_test
