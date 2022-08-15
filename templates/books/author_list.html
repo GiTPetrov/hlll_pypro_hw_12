@@ -1,0 +1,34 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Author list</title>
+</head>
+<body>
+    <h1>Author list</h1>
+    <a href="{% url 'books:index' %}">Books</a>
+    <p>Number of authors - {{ num_authors }}</p>
+    <p>Avg authors age - {{ agr.avg_age }} years old</p>
+    <table>
+        <tr>
+            <th>Author name</th>
+            <th>Num books</th>
+            <th>Max books price</th>
+            <th>Avg pages in a book</th>
+        </tr>
+        {% for author in object_list %}
+        <tr>
+            <td>
+                <a href="{% url 'books:author-detail' slug=author.name %}">{{ author }}</a>
+            </td>
+            <td>{{ author.num_books }}</td>
+            <td>{{ author.max_price }}</td>
+            <td>{{ author.avg_pages }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>
