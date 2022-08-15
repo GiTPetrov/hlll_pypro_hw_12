@@ -1,0 +1,33 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Publisher list</title>
+</head>
+<body>
+    <h1>Publisher list</h1>
+    <a href="{% url 'books:index' %}">Books</a>
+    <p>Number of publishers - {{ num_publisher }}</p>
+
+    <table>
+        <tr>
+            <th>Publisher name</th>
+            <th>Num books</th>
+            <th>Num authors</th>
+            <th>Avg rating</th>
+        </tr>
+        {% for publisher in object_list %}
+        <tr>
+            <td>
+                <a href="{% url 'books:publisher-detail' slug=publisher.name %}">{{ publisher }}</a>
+            </td>
+            <td>{{ publisher.num_books }}</td>
+            <td>{{ publisher.num_authors }}</td>
+            <td>{{ publisher.avg_rating }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ object }}</title>
+</head>
+<body>
+    <p><a href="{% url 'books:author-list' %}">Author list</a></p>
+    <p><a href="{% url 'books:book-list' %}">Book list</a></p>
+    <h1>{{ object }}</h1>
+    <p>{{ object.age}} years old</p>
+    <p>Books:</p>
+    {% for book in author_book %}
+
+            <li>{{ book.name }}</li>
+
+    {% endfor %}
+
+
+</body>
+</html>

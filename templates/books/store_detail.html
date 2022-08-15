@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ object }}</title>
+</head>
+<body>
+    <p><a href="{% url 'books:store-list' %}">Store list</a></p>
+    <h1>{{ object }}</h1>
+    <p>Books in store:</p>
+    {% for book in object.books.all %}
+
+            <li>{{ book.name }}</li>
+
+    {% endfor %}
+    <p>Books not in store:</p>
+    {% for bks in books_notin_store %}
+
+            <li>{{ bks.name }}</li>
+
+    {% endfor %}
+
+</body>
+</html>

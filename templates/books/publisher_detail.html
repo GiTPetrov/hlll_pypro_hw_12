@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ object }}</title>
+</head>
+<body>
+    <p><a href="{% url 'books:publisher-list' %}">Publisher list</a></p>
+    <h1>{{ object }}</h1>
+
+    <p>Books:</p>
+    {% for book in publ_book %}
+
+            <li>{{ book.name }}</li>
+
+    {% endfor %}
+
+</body>
+</html>

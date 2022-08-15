@@ -1,0 +1,32 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Store list</title>
+</head>
+<body>
+    <h1>Store list</h1>
+    <a href="{% url 'books:index' %}">Books</a>
+        <p>Number of stores - {{ num_stores }}</p>
+
+    <table>
+        <tr>
+            <th>Store name</th>
+            <th>Num books</th>
+            <th>Avg price</th>
+        </tr>
+        {% for store in object_list %}
+        <tr>
+            <td>
+                <a href="{% url 'books:store-detail' slug=store.name %}">{{ store }}</a>
+            </td>
+            <td>{{ store.num_books }}</td>
+            <td>{{ store.avg_price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

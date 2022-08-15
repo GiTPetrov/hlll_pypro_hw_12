@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ object }}</title>
+</head>
+<body>
+
+    <p><a href="{% url 'books:author-list' %}">Author list</a></p>
+    <p><a href="{% url 'books:book-list' %}">Book list</a></p>
+    <h1>{{ object }}</h1>
+    <p>Pages: {{ object.pages}}</p>
+    <p>Price: {{ object.price}}</p>
+    <p>Rating: {{ object.rating}}</p>
+    <p>Authors:</p>
+    {% for author in object.authors.all %}
+
+            <li>{{ author.name }}</li>
+
+    {% endfor %}
+
+    <p>Publisher: {{ object.publisher}}</p>
+    <p>Pubdate: {{ object.pubdate}}</p>
+    <p>Stores:</p>
+    {% for store in object.store_set.all %}
+
+            <li>{{ store.name }}</li>
+
+    {% endfor %}
+    <p>Stores without book:</p>
+    {% for strs in stores_without_book %}
+
+            <li>{{ strs.name }}</li>
+
+    {% endfor %}
+
+
+
+</body>
+</html>
