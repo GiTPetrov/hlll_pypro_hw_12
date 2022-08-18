@@ -141,7 +141,7 @@ class Command(BaseCommand):
         parser.add_argument(
             'num_books',
             type=int,
-            choices=range(1, 201),
+            choices=range(30, 5000),
             help='Sets the number of users to create')
 
     def handle(self, *args, **options):

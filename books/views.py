@@ -54,11 +54,22 @@ class BookFormCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = '/book-list/'
 
 
-class BookFormView(generic.edit.ModelFormMixin, generic.detail.BaseDetailView, generic.base.TemplateView):
+class BookFormView(
+    generic.edit.ModelFormMixin,
+    generic.detail.SingleObjectMixin,
+    generic.base.TemplateResponseMixin,
+    generic.detail.ContextMixin,
+    generic.base.View
+):
     model = Book
     slug_field = "name"
     template_name = 'books/book_form_view.html'
     form_class = BookForm
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
 
 
 class BookFormUpdateView(LoginRequiredMixin, generic.UpdateView):
@@ -86,7 +97,7 @@ class BooksList(generic.ListView):
             num_stores=Count('store', distinct=True),
         )
     context_object_name = 'object_list'
-    paginate_by = 10
+    paginate_by = 800
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

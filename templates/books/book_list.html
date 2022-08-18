@@ -25,6 +25,7 @@
         <tr>
             <td>
                 <a href="{% url 'books:book-detail' slug=book.name %}">{{ book }}</a>
+                <a href="{% url 'books:book-view' slug=book.name%}">FormView</a>
                 <a href="{% url 'books:book-update' slug=book.name%}">Edit</a>
                 <a href="{% url 'books:book-delete' slug=book.name%}">Delete</a>
             </td>

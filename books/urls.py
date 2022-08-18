@@ -1,6 +1,7 @@
 from books import views
 
 from django.urls import path
+from django.views.decorators.cache import cache_page
 
 app_name = 'books'
 urlpatterns = [
@@ -8,7 +9,7 @@ urlpatterns = [
     path('author-list/<str:slug>/', views.AuthorInfo.as_view(), name='author-detail'),
     path('author-list/', views.AuthorsList.as_view(), name='author-list'),
     path('book-list/<str:slug>/', views.BookInfo.as_view(), name='book-detail'),
-    path('book-list/', views.BooksList.as_view(), name='book-list'),
+    path('book-list/', cache_page(10 * 60)(views.BooksList.as_view()), name='book-list'),
     path('book-create/', views.BookFormCreateView.as_view(), name='book-create'),
     path('book-view/<str:slug>/', views.BookFormView.as_view(), name='book-view'),
     path('book-update/<str:slug>/', views.BookFormUpdateView.as_view(), name='book-update'),
